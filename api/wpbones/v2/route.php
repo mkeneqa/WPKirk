@@ -2,4 +2,6 @@
 
 use WPKirk\WPBones\Routing\API\Route;
 
-Route::get('/example', '\WPkirk\API\WPBonesV2Controller@example');
+Route::get('/info', function () {
+    return Route::response(["tag" => "v1.0.0"]);
+});

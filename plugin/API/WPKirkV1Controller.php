@@ -15,8 +15,25 @@ class WPKirkV1Controller extends RestController
         return $this->response(['version' => '1.0.0']);
     }
 
+    public function multiple()
+    {
+        return $this->response(['multiple' => '1.0.0']);
+    }
+
     public function error()
     {
-        return $this->responseError("Oops!", "Something goes wrong  ");
+        return $this->responseError("Oops!", "Something goes wrong");
+    }
+
+    public function controller_args(\WP_REST_Request $request)
+    {
+        $value = var_export($request, true);
+
+        return $this->response(
+            [
+                "request" => $value,
+                "ROUTE" => $request->get_route(),
+                ]
+        );
     }
 }
