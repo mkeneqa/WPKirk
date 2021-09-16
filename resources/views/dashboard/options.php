@@ -26,137 +26,115 @@
   <div class="wp-kirk-toc-content">
 
     <!-- Current options -->
-    <a name="current-options"></a>
     <hr />
+    <a name="current-options"></a>
     <h2>Current option</h2>
 
     <p>Here you can see he current options are:</p>
 
-    <pre>
-  echo $plugin->options;
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options;</code></pre>
 
-<?php echo $plugin->options; ?>
-    </pre>
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <h3>Get option</h3>
     <p>As you can see you'll be able to get the options by using the <strong>dot</strong> notation</p>
 
-    <pre>
-  echo $plugin->options->get( 'General.option_2');
-  // <?php echo $plugin->options->get('General.option_2') ?>
-  </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options-&gt;get( <span class="hljs-string">'General.option_2'</span>); <span class="hljs-comment">// <?php echo $plugin->options->get('General.option_2') ?></span></code></pre>
 
     <h3>Get option by an array</h3>
     <p>You may also retrive an option sub-branch as an <code>Array</code></p>
-    <pre>
-  echo $plugin->options['General'];
 
-<?php echo var_export($plugin->options[ 'General' ], true)?>
-  </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options[<span class="hljs-string">'General'</span>];</code></pre>
 
-    <pre>
-  echo $plugin->options->get( 'General.option_3');
+    <pre><code class="hljs"><?php echo var_export($plugin->options[ 'General' ], true)?></code></pre>
 
-<?php echo var_export($plugin->options->get('General.option_3')) ?>
-  </pre>
+    <p>as well as</p>
+
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options-&gt;get( <span class="hljs-string">'General.option_3'</span>);</code></pre>
+
+    <pre><code class="hljs"><?php echo var_export($plugin->options->get('General.option_3')) ?></code></pre>
 
     <h3>Get option</h3>
-    <p>You may avoid to use the <code>get()</code> method in such caes</p>
+    <p>You may also avoid to use the <code>get()</code> method, instead of use</p>
 
-    <pre>
-  echo $plugin->options->get( 'General.option_3.sub_option_of_3');
-  // <?php echo $plugin->options->get('General.option_3.sub_option_of_3') ?>
-    </pre>
-    <pre>
-  echo $plugin->options[ 'General.option_3.sub_option_of_3' ];
-  // <?php echo $plugin->options[ 'General.option_3.sub_option_of_3' ] ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options-&gt;get( <span class="hljs-string">'General.option_3.sub_option_of_3'</span>); <span class="hljs-comment">// <?php echo $plugin->options->get('General.option_3.sub_option_of_3') ?></span></code></pre>
+
+    <p>you may use</p>
+
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options[ <span class="hljs-string">'General.option_3.sub_option_of_3'</span> ]; <span class="hljs-comment">// <?php echo $plugin->options->get('General.option_3.sub_option_of_3') ?></span></code></pre>
 
     <h3>Get default option </h3>
     <p>Of course, you'll be able to define any default value if the branch/key doesn't exists</p>
-    <pre>
-  echo $plugin->options->get( 'General.doNotExists', 'default' );
-  // <?php echo $plugin->options->get('General.doNotExists', 'default') ?>
-    </pre>
+
+
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;options-&gt;get( <span class="hljs-string">'General.doNotExists'</span>, <span class="hljs-string">'default'</span> ); <span class="hljs-comment">// <?php echo $plugin->options->get('General.doNotExists', 'default') ?></span></code></pre>
 
     <!-- Update -->
-    <a name="update"></a>
     <hr />
+    <a name="update"></a>
     <h2>Update</h2>
     <p>You may update any options and branch tree in the same way, by using the dot notation</p>
 
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;set( <span class="hljs-string">'Special.Name'</span>, <span class="hljs-string">'John'</span> );</code></pre>
+
     <?php $plugin->options->set('Special.Name', 'John') ?>
-    <pre>
-  $plugin->options->set( 'Special.Name', 'John' );
-
-<?php echo $plugin->options ?>
-    </pre>
-
-    <!-- Update tree -->
-    <a name="update"></a>
-    <hr />
-    <h2>Update Tree</h2>
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <?php $plugin->options->set('General.option_3.sub_option_of_3', 'FooBar') ?>
-    <pre>
-  $plugin->options->set( 'General.option_3.sub_option_of_3', 'FooBar' );
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;set( <span class="hljs-string">'General.option_3.sub_option_of_3'</span>, <span class="hljs-string">'FooBar'</span> );</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <h3>Change with mixed value</h3>
     <p>Of course, you may also change the type of the stored key. Below, we're goinf to use and <code>Array</code>
       instead of the previous <code>string</code></p>
 
     <?php $plugin->options->set('Special.Name', [ 'John', 'Good' ]) ?>
-    <pre>
-  $plugin->options->set( 'Special.Name', [ 'John', 'Good' ] )
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;set( <span class="hljs-string">'Special.Name'</span>, [ <span class="hljs-string">'John'</span>, <span class="hljs-string">'Good'</span> ] );</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <p>and again...</p>
 
     <?php $plugin->options[ 'Special.Name' ] = [ 'Robin', 'Hood' ];?>
-    <pre>
-  $plugin->options[ 'Special.Name' ] = [ 'Robin', 'Hood' ];
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options[ <span class="hljs-string">'Special.Name'</span> ] = [ <span class="hljs-string">'Robin'</span>, <span class="hljs-string">'Hood'</span> ];</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <!-- Add -->
-    <a name="add"></a>
     <hr />
+    <a name="add"></a>
     <h2>Add</h2>
     <p>Of course, adding new options will work in the same way by using the dot notation</p>
 
     <?php $plugin->options->set('Special.time', time()) ?>
-    <pre>
-  $plugin->options->set( 'Special.time', time() );
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;set( <span class="hljs-string">'Special.time'</span>, time() );</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <?php $plugin->options[ 'Special.timeZone' ] = time() ?>
-    <pre>
-  $plugin->options[ 'Special.timeZone' ] = time();
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options[ <span class="hljs-string">'Special.timeZone'</span> ] = time();</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <?php $plugin->options[ 'what-you-like' ] = 'Simply is best' ?>
-    <pre>
-  $plugin->options[ 'what-you-like' ] = 'Simply is best';
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options[ <span class="hljs-string">'what-you-like'</span> ] = <span class="hljs-string">'Simply is best'</span>;</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <!-- Mass Update -->
-    <a name="mass-update"></a>
     <hr />
+    <a name="mass-update"></a>
     <h3>Mass update</h3>
     <p>In according with the options structure, you may also update a whole sub set of options instead of change them
       individually</p>
+
     <?php $plugin->options->update(
     [
         'General' => [
@@ -168,21 +146,20 @@
       ]
 )
     ?>
-    <pre>
-  $plugin->options->update(
-    [ 'General' =>
-      [ 'option_4' =>
-        [ 'color' => 'red', 'background' => 'transparent' ]
+
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;update(
+    [ <span class="hljs-string">'General'</span> =&gt;
+      [ <span class="hljs-string">'option_4'</span> =&gt;
+        [ <span class="hljs-string">'color'</span> =&gt; <span class="hljs-string">'red'</span>, <span class="hljs-string">'background'</span> =&gt; <span class="hljs-string">'transparent'</span> ]
       ]
     ]
-  );
+  );</code></pre>
 
-<?php echo $plugin->options ?>
-</pre>
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <!-- Mass Insert -->
-    <a name="mass-insert"></a>
     <hr />
+    <a name="mass-insert"></a>
     <h3>Mass insert</h3>
     <p>Of course, you may use the mass feature for the insert as well</p>
 
@@ -198,64 +175,58 @@
     )
     ?>
 
-    <pre>
-  $plugin->options->update(
-    [ 'General' =>
-      [ 'option_5' =>
-        [ 'color' => 'red', 'background' => 'transparent' ]
-      ]
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;update(
+  [ <span class="hljs-string">'General'</span> =&gt;
+    [ <span class="hljs-string">'option_5'</span> =&gt;
+      [ <span class="hljs-string">'color'</span> =&gt; <span class="hljs-string">'red'</span>, <span class="hljs-string">'background'</span> =&gt; <span class="hljs-string">'transparent'</span> ]
     ]
-  );
+  ]
+);</code></pre>
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
 
     <!-- Delete -->
-    <a name="delete"></a>
     <hr />
+    <a name="delete"></a>
     <h2>Delete</h2>
     <p>You may delete an option or a set of options by using the <code>set()</code> method along with <code>null</code>
     </p>
 
     <?php $plugin->options->set('General.option_1', null) ?>
-    <pre>
-  $plugin->options->set( 'General.option_1', null );
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;set( <span class="hljs-string">'General.option_1'</span>, <span class="hljs-literal">null</span> );</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <p>Alternatively, you may use the <code>delete()</code> method</p>
 
     <?php $plugin->options->delete('General.option_4') ?>
-    <pre>
-  $plugin->options->delete( 'General.option_4' );
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;delete( <span class="hljs-string">'General.option_4'</span> );</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <h2>Delete all</h2>
     <p>Finally, you may delete <strong>all</strong></p>
 
     <?php $plugin->options->delete() ?>
-    <pre>
-  $plugin->options->delete();
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;delete();</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
     <!-- Reset -->
-    <a name="reset"></a>
     <hr />
+    <a name="reset"></a>
     <h2>Reset to default</h2>
     <p>Don't worry, we can reset evenrything by using the original file</p>
 
     <?php $plugin->options->reset() ?>
-    <pre>
-  $plugin->options->reset();
 
-<?php echo $plugin->options ?>
-    </pre>
+    <pre><code class="hljs" style="background:#282C34;border-radius:8px">$plugin-&gt;options-&gt;reset();</code></pre>
+
+    <pre><code class="hljs"><?php echo $plugin->options; ?></code></pre>
 
   </div>
 
