@@ -23,7 +23,7 @@ use WPKirk\Http\Controllers\User;
 
   <p>You may install Eloquent ORM in your plugin by using</p>
 
-  <pre>$ composer install illuminate/database</pre>
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">$</span><span class="bash"> composer install illuminate/database</span></code></pre>
 
   <p>A we are using the complete illuminate database package, for further documentation on using the various
     database facilities this library provides, consult the <a href="https://laravel.com/docs/8.x/eloquent">Laravel
@@ -32,55 +32,69 @@ use WPKirk\Http\Controllers\User;
 
   <h2>Query WordPress users table</h2>
 
-  <pre>
-User::all();
-<details>
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">User</span>;
+
+User::all();</code></pre>
+
+  <pre><code class="hljs"><details>
 <?php
 var_dump(User::all());
 ?>
-</details>
-</pre>
+</details></code></pre>
+
 
   <h2>Find</h2>
 
-  <pre>
-User::find(1)->user_email;
+  <p>Of course, you'll be able to use all eloquent features</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">User</span>;
+
+User::find(<span class="hljs-number">1</span>)-&gt;user_email;</code></pre>
+
+  <pre><code class="hljs"><details>
 <?php
 var_dump(User::find(1)->user_email);
 ?>
-</pre>
+</details></code></pre>
 
   <h2>Custom Table</h2>
 
-  <pre>
-Product::find([11,12]);
-<details>
+  <p>Alognside the WordPress table you may use eloquent for your custom database table</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
+
+Product::find([<span class="hljs-number">11</span>,<span class="hljs-number">12</span>]);</code></pre>
+
+  <pre><code class="hljs"><details>
 <?php
 var_dump(Product::find([11,12]));
 ?>
-</details>
-</pre>
+</details></code></pre>
 
-  <pre>
-Product::find(11)->activity;
-<?php
+  <p>and get single column value</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
+
+Product::find(<span class="hljs-number">11</span>)-&gt;activity;</code></pre>
+
+  <pre><code class="hljs"><?php
 var_dump(Product::find(11)->activity);
-?>
-</pre>
+?></code></pre>
 
   <h2>Loop into</h2>
 
-  <pre>
-Product::all()->each(function ($e) {
-    var_dump($e->log_id);
-});
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
 
-<?php
+Product::all()-&gt;each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$e</span>) </span>{
+    var_dump($e-&gt;log_id);
+});</code></pre>
+
+  <pre><code class="hljs"><?php
 Product::all()->each(function ($e) {
     var_dump($e->log_id);
 });
-?>
-</pre>
+?></code></pre>
+
 
   <p>For further documentation on using the various database facilities this library provides, consult the <a
       target="_blank" href="https://laravel.com/docs/5.8/eloquent">Laravel framework documentation</a></p>

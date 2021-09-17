@@ -84,12 +84,6 @@ return [
                 ],
             ],
             [
-                "menu_title" => "User Agent",
-                'route' => [
-                    'get' => 'ExampleUserAgentController@index',
-                ],
-            ],
-            [
                 "menu_title" => "Database",
                 'route' => [
                     'get' => 'ExampleDatabaseController@index',
