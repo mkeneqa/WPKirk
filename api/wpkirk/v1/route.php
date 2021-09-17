@@ -62,6 +62,7 @@ Route::get('/error', function () {
 
 // may use the same route for different methods
 Route::get('/version', '\WPKirk\API\WPKirkV1Controller@version');
+
 Route::post('/version', '\WPKirk\API\WPKirkV1Controller@version');
 
 // another way to use the same route for different methods

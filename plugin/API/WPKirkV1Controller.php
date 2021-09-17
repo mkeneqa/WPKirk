@@ -12,7 +12,10 @@ class WPKirkV1Controller extends RestController
 {
     public function version()
     {
-        return $this->response(['version' => '1.0.0']);
+        if (current_user_can('edit_posts')) {
+            return $this->response(['version' => '1.0.0']);
+        }
+        return $this->responseError("Oops!", "Something goes wrong >> " . $this->request->get_header('user_agent'));
     }
 
     public function multiple()
@@ -22,6 +25,9 @@ class WPKirkV1Controller extends RestController
 
     public function error()
     {
+        error_log("Vendor " . $this->vendor);
+
+        logger()->debug("Vendor", ($this->vendor));
         logger()->debug("REQUEST get_method", ($this->request->get_method()));
         logger()->debug("REQUEST get_headers", ($this->request->get_headers()));
         logger()->debug("REQUEST get_query_params", ($this->request->get_query_params()));
