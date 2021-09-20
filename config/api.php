@@ -13,7 +13,7 @@ return [
 
     // embeded wp-json-server
     'wp' => [
-        'require_authentication' => false
+        'require_authentication' => false, // will affect all routes.
     ],
 
     // your custom rest api
