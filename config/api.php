@@ -13,13 +13,12 @@ return [
 
     // embeded wp-json-server
     'wp' => [
-        'debug' => false,
-        'enabled' => true
+        'require_authentication' => false
     ],
 
     // your custom rest api
     'custom' => [
-        'debug' => false,
+        'path' => '/api',
         'enabled' => true,
     ],
 
@@ -28,4 +27,4 @@ return [
         // embed basic authentication handler
         'basic' => true
     ]
-]
+];
