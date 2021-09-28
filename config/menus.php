@@ -84,6 +84,12 @@ return [
                 ],
             ],
             [
+                "menu_title" => "API",
+                'route' => [
+                    'get' => 'ExampleAPIController@index',
+                ],
+            ],
+            [
                 "menu_title" => "Database",
                 'route' => [
                     'get' => 'ExampleDatabaseController@index',
