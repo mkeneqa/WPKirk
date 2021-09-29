@@ -688,12 +688,20 @@ namespace Bones {
 
         /**
          * Commodity function to check if help has been requested.
+         * 
+         * @param string $str Optional. Command to check.
+         * 
+         * @return bool
          */
-        protected function isHelp()
+        protected function isHelp($str = null)
         {
-            $arguments = $this->arguments();
+            $params = $this->commandParams();
 
-            return (empty($arguments) || $this->isCommand('--help'));
+            if (!is_null($str)) {
+                return (empty($str) || $str === '--help');
+            }
+
+            return (!empty($params[0]) && $params[0] === '--help');
         }
 
         /**
@@ -703,9 +711,10 @@ namespace Bones {
          */
         public function boot()
         {
-            // as the rename function will change the core of the plugin
-            // we won't load the WordPress environment
-            if ($this->isHelp()) {
+            $arguments = $this->arguments();
+
+            // we won't load the WordPress environment for the following commands
+            if (empty($arguments) || $this->isCommand('--help')) {
                 $this->help();
             }
             // rename 
@@ -776,7 +785,7 @@ namespace Bones {
             $this->line(" deploy                  Create a deploy version");
             $this->line(" install                 Install a new WP Bones plugin");
             $this->line(" optimize                Run composer dump-autoload with -o option");
-            $this->line(" rename                  Set or change the plugin name");
+            $this->line(" rename                  Rename the plugin name and the namespace");
             $this->line(" require                 Install a WP Bones package");
             $this->line(" tinker                  Interact with your application");
             $this->line(" update                  Update the Framework");
@@ -982,8 +991,8 @@ namespace Bones {
         protected function rename($args)
         {
 
-            if (!empty($args[0]) && $args[0] === '--help') {
-                $this->info('Usage');
+            if ($this->isHelp()) {
+                $this->info('Usage:');
                 $this->line(' php bones rename [options] <Plugin Name> <Namespace>');
                 $this->info('Available options:');
                 $this->line(' --reset                 Reset the plugin name and namespace');
@@ -1107,6 +1116,12 @@ namespace Bones {
          */
         protected function install()
         {
+            if ($this->isHelp()) {
+                $this->line("Will run the composer install\n");
+                $this->info('Usage:');
+                $this->line(' php bones install');
+                exit;
+            }
             $this->line(`composer install`);
         }
 
@@ -1155,7 +1170,7 @@ namespace Bones {
 
             if (!isset($argv[0]) || empty($argv[0])) {
                 $version = $this->ask('Enter new version of your plugin:');
-            } elseif (isset($argv[0]) && "--help" === $argv[0]) {
+            } elseif ($this->isHelp()) {
                 $this->line("\nUsage:");
                 $this->info("  version [plugin version]\n");
                 $this->line("Arguments:");
@@ -1211,6 +1226,12 @@ namespace Bones {
          */
         protected function update()
         {
+            if ($this->isHelp()) {
+                $this->line("Will run the composer update. Useful if there is a new version of WP Bones\n");
+                $this->info('Usage:');
+                $this->line(' php bones update');
+                exit;
+            }
             // update composer module
             $this->line(`composer update`);
         }
@@ -1315,8 +1336,7 @@ namespace Bones {
          */
         protected function requirePackage($package)
         {
-            // help
-            if (empty($package) || $package == '--help') {
+            if ($this->isHelp($package)) {
                 $this->info('Use php bones require <PackageName>');
                 exit;
             }
@@ -1434,8 +1454,8 @@ namespace Bones {
          */
         protected function createMigrate($tablename)
         {
-            // help
-            if (empty($tablename) || $tablename == '--help') {
+
+            if ($this->isHelp($tablename)) {
                 $this->info('Use php bones migrate:make <Tablename>');
 
                 return;
@@ -1467,8 +1487,7 @@ namespace Bones {
          */
         protected function createCustomPostType($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:cpt <ClassName>');
 
                 return;
@@ -1515,8 +1534,8 @@ namespace Bones {
          */
         protected function createCustomTaxonomyType($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:ctt <ClassName>');
 
                 return;
@@ -1568,8 +1587,8 @@ namespace Bones {
          */
         protected function createController($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:controller <ClassName>');
 
                 return;
@@ -1615,8 +1634,8 @@ namespace Bones {
          */
         protected function createCommand($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:console <ClassName>');
 
                 return;
@@ -1669,8 +1688,8 @@ namespace Bones {
          */
         protected function createShortcode($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:shortcode <ClassName>');
 
                 return;
@@ -1704,8 +1723,8 @@ namespace Bones {
          */
         protected function createProvider($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:provider <ClassName>');
 
                 return;
@@ -1737,8 +1756,8 @@ namespace Bones {
          */
         protected function createWidget($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:widget <ClassName>');
 
                 return;
@@ -1786,8 +1805,8 @@ namespace Bones {
          */
         protected function createAjax($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:ajax <ClassName>');
 
                 return;
@@ -1821,8 +1840,8 @@ namespace Bones {
          */
         protected function createModel($className)
         {
-            // help
-            if (empty($className) || $className == '--help') {
+
+            if ($this->isHelp($className)) {
                 $this->info('Use php bones make:model <ClassName>');
 
                 return;
@@ -1871,16 +1890,8 @@ namespace Bones {
          */
         protected function handle()
         {
-            $argv = $_SERVER['argv'];
-
-            // strip the application name
-            array_shift($argv);
-
-            if ($this->isHelp()) {
-                $this->help();
-            }
-            // Deploy
-            elseif ($this->isCommand('deploy')) {
+            // deploy
+            if ($this->isCommand('deploy')) {
                 $this->deploy($this->arguments(1));
             }
             // Optimize
