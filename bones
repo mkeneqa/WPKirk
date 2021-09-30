@@ -446,7 +446,7 @@ namespace Bones {
         /**
          * WP Bones version
          */
-        const VERSION = '1.0.1';
+        const VERSION = '1.0.3';
 
         /**
          * Used for additional kernel command.
