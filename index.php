@@ -4,7 +4,7 @@
  * Plugin Name: WP Kirk
  * Plugin URI: http://undolog.com
  * Description: WordPress plugin demo bases on WP Bones framework
- * Version: dev-demo
+ * Version: 1.0.0
  * Author: Giovambattista Fazioli
  * Author URI: http://undolog.com
  * Text Domain: wp-kirk
@@ -12,7 +12,7 @@
  *
  */
 
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
