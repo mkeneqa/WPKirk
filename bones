@@ -497,7 +497,7 @@ namespace Bones {
         }
 
         /**
-         * Retrun the current Plugin namespace defined in the namespace file.
+         * Return the current Plugin namespace defined in the namespace file.
          *
          * @return string
          */
@@ -653,9 +653,9 @@ namespace Bones {
         /**
          * Return the arguments after "php bones".
          *
-         * @param int $index Optional. Index of argument. 
+         * @param int $index Optional. Index of argument.
          * If NULL will be returned the whole array.
-         *                   
+         *
          * @return mixed|array
          */
         protected function arguments($index = null)
@@ -670,10 +670,10 @@ namespace Bones {
 
         /**
          * Return the params after "php bones [command]".
-         * 
-         * @param int $index Optional. Index of param. 
+         *
+         * @param int $index Optional. Index of param.
          * If NULL will be returned the whole array.
-         * 
+         *
          * @return array
          */
         protected function commandParams($index = null)
@@ -688,9 +688,9 @@ namespace Bones {
 
         /**
          * Commodity function to check if help has been requested.
-         * 
+         *
          * @param string $str Optional. Command to check.
-         * 
+         *
          * @return bool
          */
         protected function isHelp($str = null)
@@ -717,7 +717,7 @@ namespace Bones {
             if (empty($arguments) || $this->isCommand('--help')) {
                 $this->help();
             }
-            // rename 
+            // rename
             elseif ($this->isCommand('rename')) {
                 $this->rename($this->commandParams());
             }
@@ -763,7 +763,7 @@ namespace Bones {
 
         /**
          * Display the full help.
-         * 
+         *
          */
         protected function help()
         {
@@ -813,7 +813,7 @@ namespace Bones {
 
         /**
          * Commodity to display an message in the console.
-         * 
+         *
          * @param string $str The message to display.
          */
         protected function line($str)
@@ -824,7 +824,7 @@ namespace Bones {
 
         /**
          * Commodity to display an error message in the console.
-         * 
+         *
          * @param string $str The message to display.
          */
         protected function error($str)
@@ -836,7 +836,7 @@ namespace Bones {
 
         /**
          * Commodity to display a message in the console.
-         * 
+         *
          * @param string $str The message to display.
          */
         protected function info($str)
@@ -847,7 +847,7 @@ namespace Bones {
 
         /**
          * Get input from console
-         * 
+         *
          * @param string $str The question to ask
          * @param string $default The default value
          */
@@ -1017,7 +1017,7 @@ namespace Bones {
             if (!empty($args[0]) && $args[0] === '--reset') {
                 [$plugin_name, $namespace] = $this->getDefaultPlaginNameAndNamespace();
             }
-            // force namespace as WPKirk after a composer update 
+            // force namespace as WPKirk after a composer update
             elseif (!empty($args[0]) && $args[0] === '--update') {
                 [$search_plugin_name, $search_namespace] = $this->getDefaultPlaginNameAndNamespace();
             }
@@ -1126,9 +1126,11 @@ namespace Bones {
         }
 
         /**
-         * Handle the plugin version by SemVer
-         * 
-         * 
+         * Handle the plugin version by SemVer.
+         * As you know we have to handle two different plugin version: the first one is the plugin version, the second one is the readme.txt version.
+         * This means that we are going to load and check both files.
+         * We have to check if the version are the same as well.
+         *
          */
         protected function version($argv)
         {
@@ -1138,8 +1140,7 @@ namespace Bones {
             $readme_lines = explode("\n", $readme);
             foreach ($readme_lines as $line) {
                 if (preg_match('/^[ \t\/*#@]*Stable\s*(.*)$/i', $line, $matches)) {
-                    $version_readme_replace =  $matches[0];
-
+                    $version_readme_replace = $matches[0];
 
                     // get just the version number
                     $version_readme = preg_replace('/[^0-9.]/', '', $matches[1]);
@@ -1152,9 +1153,9 @@ namespace Bones {
             $index_lines = explode("\n", $index);
             foreach ($index_lines as $line) {
 
-                // get the plugin version for wordpres comments
+                // get the plugin version for Wordpress comments
                 if (preg_match('/^[ \t\/*#@]*Version:\s*(.*)$/i', $line, $matches)) {
-                    $version_index_replace =  $matches[0];
+                    $version_index_replace = $matches[0];
 
                     // get just the version number
                     $version_index = preg_replace('/[^0-9.]/', '', $matches[1]);
@@ -1201,7 +1202,7 @@ namespace Bones {
                 return;
             }
 
-            if ($version != $version_index && $version != $version_readme) {
+            if ($version != $version_index || $version != $version_readme) {
 
                 // replace version in readme.txt
                 $new_stable_tag = str_replace($version_readme, $version, $version_readme_replace);
@@ -1238,7 +1239,7 @@ namespace Bones {
 
         /**
          * Create a deploy version of the plugin
-         * 
+         *
          * @param string $path The path to the deploy version of the plugin
          */
         protected function deploy($path)
@@ -1331,7 +1332,7 @@ namespace Bones {
 
         /**
          * Install a new composer package
-         * 
+         *
          * @param string $package The composer package to install
          */
         protected function requirePackage($package)
@@ -1373,7 +1374,7 @@ namespace Bones {
 
         /**
          * Delete a whole folder
-         * 
+         *
          * @param string $path The path to the folder to delete
          */
         public function deleteDirectory($path)
@@ -1393,7 +1394,7 @@ namespace Bones {
 
         /**
          * Copy a whole folder. Used by deploy()
-         * 
+         *
          * @param string $source The source path
          * @param string $dest The target path
          * @param number $permissions The permissions to set
@@ -1437,7 +1438,7 @@ namespace Bones {
 
         /**
          * Used to skip some files and folders during the deploy
-         * 
+         *
          * @param string $value The file or folder to skip
          */
         protected function skip($value)
@@ -1449,7 +1450,7 @@ namespace Bones {
 
         /**
          * Create a migrate file
-         * 
+         *
          * @param string $table The table name
          */
         protected function createMigrate($tablename)
@@ -1482,7 +1483,7 @@ namespace Bones {
 
         /**
          * Create a Custom Post Type controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createCustomPostType($className)
@@ -1529,7 +1530,7 @@ namespace Bones {
 
         /**
          * Create a Custom Taxonomy controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createCustomTaxonomyType($className)
@@ -1582,7 +1583,7 @@ namespace Bones {
 
         /**
          * Create a controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createController($className)
@@ -1629,7 +1630,7 @@ namespace Bones {
 
         /**
          * Create a Command controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createCommand($className)
@@ -1683,7 +1684,7 @@ namespace Bones {
 
         /**
          * Create a Shortcode controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createShortcode($className)
@@ -1718,7 +1719,7 @@ namespace Bones {
 
         /**
          * Create a Service Provider
-         * 
+         *
          * @param string $className The class name
          */
         protected function createProvider($className)
@@ -1751,7 +1752,7 @@ namespace Bones {
 
         /**
          * Create a Widget controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createWidget($className)
@@ -1800,7 +1801,7 @@ namespace Bones {
 
         /**
          * Create a Ajax controller
-         * 
+         *
          * @param string $className The class name
          */
         protected function createAjax($className)
@@ -1835,7 +1836,7 @@ namespace Bones {
 
         /**
          * Create a database Model
-         * 
+         *
          * @param string $className The class name
          */
         protected function createModel($className)
