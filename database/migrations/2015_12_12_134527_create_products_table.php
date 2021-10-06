@@ -13,6 +13,8 @@ class Products extends Migration
               object_id bigint(20) unsigned NOT NULL default '0',
               object_type varchar(20) NOT NULL default 'post',
               activity_date datetime NOT NULL default '0000-00-00 00:00:00',
+              foo_bar varchar(20) NOT NULL default '1',
+              `foo-bar` varchar(20) NOT NULL default '2',
               PRIMARY KEY  (log_id),
               KEY user_id (user_id)
          ) {$this->charsetCollate};");

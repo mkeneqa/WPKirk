@@ -9,93 +9,89 @@
 <?php
 
 use WPKirk\Http\Controllers\Product;
-use WPKirk\Http\Controllers\User;
 
 ?>
 
 <div class="wp-kirk wrap wp-kirk-sample">
 
-  <h1>Eloquent ORM</h1>
-  <p>You may include the Eloquent ORM to provide a beautiful, simple ActiveRecord implementation for working with your
-    database. Each database table has a corresponding "Model" which is used to interact with that table. Models allow
-    you to query for data in your tables, as well as insert new records into the table.
-  </p>
+  <h1>Database</h1>
 
-  <p>You may install Eloquent ORM in your plugin by using</p>
+  <p>You may use the <code>WPKirk\WPBones\Database\Model</code> to handle the WordPress database table</p>
 
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">$</span><span class="bash"> composer install illuminate/database</span></code></pre>
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span>
 
-  <p>A we are using the complete illuminate database package, for further documentation on using the various
-    database facilities this library provides, consult the <a href="https://laravel.com/docs/8.x/eloquent">Laravel
-      framework documentation</a></p>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
 
+<span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">WPBones</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Model</span>;
 
-  <h2>Query WordPress users table</h2>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-comment">/**
+     * The table associated with the model.
+     *
+     * <span class="hljs-doctag">@var</span> string
+     */</span>
+    <span class="hljs-keyword">protected</span> $table = <span class="hljs-string">'products'</span>;
 
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">User</span>;
+    <span class="hljs-comment">/**
+     * The primary key for the model.
+     *
+     * <span class="hljs-doctag">@var</span> string
+     */</span>
+    <span class="hljs-keyword">protected</span> $primaryKey = <span class="hljs-string">'ID'</span>;
+}</code></pre>
 
-User::all();</code></pre>
+  <p>For example, you may get all records by using</p>
 
-  <pre><code class="hljs"><details>
-<?php
-var_dump(User::all());
-?>
-</details></code></pre>
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> Product::all()</code></pre>
 
+  <pre><code class="hljs"><details><?php var_dump(Product::all()) ?></details></code></pre>
 
-  <h2>Find</h2>
+  <p>Of course, you will be able to loop into that</p>
 
-  <p>Of course, you'll be able to use all eloquent features</p>
-
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">User</span>;
-
-User::find(<span class="hljs-number">1</span>)-&gt;user_email;</code></pre>
-
-  <pre><code class="hljs"><details>
-<?php
-var_dump(User::find(1)->user_email);
-?>
-</details></code></pre>
-
-  <h2>Custom Table</h2>
-
-  <p>Alognside the WordPress table you may use eloquent for your custom database table</p>
-
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
-
-Product::find([<span class="hljs-number">11</span>,<span class="hljs-number">12</span>]);</code></pre>
-
-  <pre><code class="hljs"><details>
-<?php
-var_dump(Product::find([11,12]));
-?>
-</details></code></pre>
-
-  <p>and get single column value</p>
-
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
-
-Product::find(<span class="hljs-number">11</span>)-&gt;activity;</code></pre>
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">foreach</span> (Product::all() <span class="hljs-keyword">as</span> $product) {
+  <span class="hljs-keyword">echo</span> $product-&gt;dump();
+}</code></pre>
 
   <pre><code class="hljs"><?php
-var_dump(Product::find(11)->activity);
-?></code></pre>
+    foreach (Product::all() as $product) {
+        echo $product->dump();
+    }
+  ?></code></pre>
 
-  <h2>Loop into</h2>
+  <p>You may also get the JSON version by print the string</p>
 
-  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">use</span> <span class="hljs-title">WPKirk</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Product</span>;
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()</code></pre>
 
-Product::all()-&gt;each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$e</span>) </span>{
-    var_dump($e-&gt;log_id);
-});</code></pre>
+  <pre><code class="hljs"><details><?php echo Product::all()->dump() ?></details></code></pre>
 
-  <pre><code class="hljs"><?php
-Product::all()->each(function ($e) {
-    var_dump($e->log_id);
-});
-?></code></pre>
+  <p>Get the first item</p>
 
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;first()</code></pre>
 
-  <p>For further documentation on using the various database facilities this library provides, consult the <a
-      target="_blank" href="https://laravel.com/docs/5.8/eloquent">Laravel framework documentation</a></p>
+  <pre><code class="hljs"><?php echo Product::all()->first()->dump() ?>
+  </code></pre>
+
+  <p>Get any column as property</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;first()-&gt;activity; <span class="hljs-comment">// <?php echo Product::all()->first()->activity ?></span></code></pre>
+
+  <p>Of course, you may get the last one</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;last()</code></pre>
+
+  <pre><code class="hljs"><?php echo Product::all()->last()->dump() ?>
+  </code></pre>
+
+  <p>Again, you may get any column as property</p>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;last()-&gt;activity; <span class="hljs-comment">// <?php echo Product::all()->last()->activity ?></span></code></pre>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;last()-&gt;foo_bar; <span class="hljs-comment">// <?php echo Product::all()->last()->foo_bar ?></span></code></pre>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;last()[‘foo_bar’]; <span class="hljs-comment">// <?php echo Product::all()->last()['foo_bar'] ?></span></code></pre>
+
+  <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> Product::all()-&gt;last()[‘foo-bar’]; <span class="hljs-comment">// <?php echo Product::all()->last()['foo-bar'] ?></span></code></pre>
+
 </div>

@@ -95,6 +95,12 @@ return [
                     'get' => 'ExampleDatabaseController@index',
                 ],
             ],
+            [
+                "menu_title" => "Eloquent ORM",
+                'route' => [
+                    'get' => 'ExampleEloquentController@index',
+                ],
+            ],
         ],
     ],
 ];

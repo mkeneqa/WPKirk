@@ -4,21 +4,26 @@ namespace WPKirk\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class EloquentProduct extends Model
 {
+    /**
+     * Disable Illuminate timestamp columns.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'users';
-
+    protected $table = 'products';
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'log_id';
 
     /**
      * Get the table associated with the model.
