@@ -48,7 +48,8 @@
 
     <h2>Fluent Example</h2>
     <pre><code class="hljs" style="background:#282C34;border-radius:8px">$html = WPKirk\Html::button( <span class="hljs-string">"Hello, world!"</span> )-&gt;html();
-<span class="hljs-keyword">echo</span> $html;</code></pre>
+
+    <span class="hljs-keyword">echo</span> $html;</code></pre>
 
     <div>
       <?php $html = WPKirk\Html::button("Hello, world!")->html();
@@ -283,3 +284,4 @@ $button-&gt;class = <span class="hljs-string">'button button-primary'</span>;
 
 
   </div>
+</div>

@@ -18,5 +18,5 @@ class Product extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'log_id';
 }
