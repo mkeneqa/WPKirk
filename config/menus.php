@@ -96,6 +96,12 @@ return [
                 ],
             ],
             [
+                "menu_title" => "Model",
+                'route' => [
+                    'get' => 'ExampleModelController@index',
+                ],
+            ],
+            [
                 "menu_title" => "Eloquent ORM",
                 'route' => [
                     'get' => 'ExampleEloquentController@index',

@@ -12,11 +12,11 @@ class ProdcutSeeder extends Seeder
     public function run()
     {
         $this->insert(
-            "(user_id,activity) VALUES 
-            (1,'refresh'),
-            (2,'updated'),
-            (3,'running'),
-            (4,'consumer')
+            "(name) VALUES 
+            ('iMac'),
+            ('iPod'),
+            ('iPhone'),
+            ('iPad')
             "
         );
     }
