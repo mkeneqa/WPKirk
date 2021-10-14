@@ -665,8 +665,11 @@ namespace Bones {
          */
         protected function loadKernel()
         {
-            $kernelClass = "{$this->namespace}\\Console\\Kernel";
-            $WPBoneskernelClass = "{$this->namespace}\\WPBones\\Foundation\\Console\\Kernel";
+            // current plugin name and namespace
+            $namespace = $this->getNamespace();
+            
+            $kernelClass = "{$namespace}\\Console\\Kernel";
+            $WPBoneskernelClass = "{$namespace}\\WPBones\\Foundation\\Console\\Kernel";
 
             if (class_exists($WPBoneskernelClass) && class_exists($kernelClass)) {
                 $this->kernel = new $kernelClass;

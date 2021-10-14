@@ -25,7 +25,7 @@
 */
 add_action('wpbones_console_deploy_start', function ($console, $path) {
     // Do something
-});
+}, 10, 2);
 
 /**
 * Fired before compile assets
@@ -35,7 +35,7 @@ add_action('wpbones_console_deploy_start', function ($console, $path) {
 */
 add_action('wpbones_console_deploy_before_compile_assets', function ($console, $path) {
     // Do something
-});
+}, 10, 2);
 
 /**
 * Filter the console command used to compile assets
@@ -55,7 +55,7 @@ add_filter('wpbones_console_deploy_gulp_production', function ($command) {
 */
 add_action('wpbones_console_deploy_after_compile_assets', function ($console, $path) {
     // Do something
-});
+}, 10, 2);
 
 /**
 * Filter the list of the folder to skip for the deploy version
@@ -75,4 +75,4 @@ add_filter('wpbones_console_deploy_skip_folders', function ($folders) {
 */
 add_action('wpbones_console_deployed', function ($console, $path) {
     // Do something
-});
+}, 10, 2);
