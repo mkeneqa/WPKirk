@@ -16,10 +16,7 @@
  *
  */
 
-/*
-add_filter('wpbones_console_deploy_skip', function($skip){
-    return array_merge($skip,[
-        'docs'
-    ]);
+
+add_filter('wpbones_console_deploy_gulp_production', function () {
+    return 'yarn build';
 });
-*/
