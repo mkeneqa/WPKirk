@@ -423,7 +423,7 @@ namespace Bones {
     /**
      * The WP Bones command line version.
      */
-    define('WPBONES_COMMAND_LINE_VERSION', "1.1.1");
+    define('WPBONES_COMMAND_LINE_VERSION', "1.1.2");
     
 
     use Bones\SemVer\Version;
