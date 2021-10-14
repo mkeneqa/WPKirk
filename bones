@@ -1319,16 +1319,25 @@ namespace Bones {
                 // alternative method to customize the deploy
                 @include 'deploy.php';
 
+                do_action('wpbones_console_deploy_start', $this, $path);
+
                 // first of all delete previous path
                 $this->info("🕐 Delete folder {$path}");
                 $this->deleteDirectory($path);
                 $this->info("\033[1A👍");
 
+                do_action('wpbones_console_deploy_before_compile_assets', $this, $path);
+
                 // run yarn production
-                $this->info('🕐 Build for production');
                 $command = apply_filters('wpbones_console_deploy_gulp_production', 'gulp production');
-                shell_exec($command);
-                $this->info("\e[1A👍");
+                
+                if ($command) {
+                    $this->info('🕐 Build for production');
+                    shell_exec($command);
+                    $this->info("\e[1A👍");
+                }
+
+                do_action('wpbones_console_deploy_after_compile_assets', $this, $path);
 
                 // files and folders to skip
                 $this->skipWhenDeploy = [
@@ -1359,7 +1368,7 @@ namespace Bones {
                  *
                  * @param array $array The files and folders are relative to the root of plugin.
                  */
-                $this->skipWhenDeploy = apply_filters('wpbones_console_deploy_skip', $this->skipWhenDeploy);
+                $this->skipWhenDeploy = apply_filters('wpbones_console_deploy_skip_folders', $this->skipWhenDeploy);
 
                 $this->rootDeploy = __DIR__;
 
@@ -1373,7 +1382,7 @@ namespace Bones {
                  * @param mixed  $bones This bones command instance.
                  * @param string $path  The deployed path.
                  */
-                do_action('wpbones_console_deployed', $this, $path);
+                do_action('wpbones_console_deploy_completed', $this, $path);
 
                 $this->info("👏 Deploy Completed!");
             }
