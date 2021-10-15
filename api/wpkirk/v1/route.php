@@ -66,10 +66,16 @@ Route::get('/version', '\WPKirk\API\WPKirkV1Controller@version');
 Route::post('/version', '\WPKirk\API\WPKirkV1Controller@version');
 
 // another way to use the same route for different methods
-Route::request(['get', 'POST'], '/multiple', '\WPKirk\API\WPKirkV1Controller@version');
+Route::request(['get', 'POST'], '/multiple', '\WPKirk\API\WPKirkV1Controller@multiple');
 
 // controller error example
 Route::get('/error', '\WPKirk\API\WPKirkV1Controller@error');
 
 // controller args example
 Route::get('/controller_args', '\WPKirk\API\WPKirkV1Controller@controller_args');
+
+Route::get('/protected', function () {
+    return 'Hello World!';
+}, ['permission_callback' => function () {
+    return false;
+}]);
