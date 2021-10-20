@@ -1066,12 +1066,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpbones/WPBones.git",
-                "reference": "a9d6b1171bd02179e0de12b276a40ebe7065be57"
+                "reference": "01b20a854bb740d4b474220d8fa7dff4bc8da13b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpbones/WPBones/zipball/a9d6b1171bd02179e0de12b276a40ebe7065be57",
-                "reference": "a9d6b1171bd02179e0de12b276a40ebe7065be57",
+                "url": "https://api.github.com/repos/wpbones/WPBones/zipball/01b20a854bb740d4b474220d8fa7dff4bc8da13b",
+                "reference": "01b20a854bb740d4b474220d8fa7dff4bc8da13b",
                 "shasum": ""
             },
             "require": {
@@ -1112,7 +1112,7 @@
                 "issues": "https://github.com/wpbones/WPBones/issues",
                 "source": "https://github.com/wpbones/WPBones/"
             },
-            "time": "2021-10-15T07:23:00+00:00"
+            "time": "2021-10-18T10:08:15+00:00"
         },
         {
             "name": "wpbones/wptables",
