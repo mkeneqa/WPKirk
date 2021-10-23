@@ -12,7 +12,7 @@
 
 return [
 
-  'custom_page' => [
+  'first_custom_page' => [
     'title'      => 'Title of page',
     'capability' => 'read',
     'route'      => [

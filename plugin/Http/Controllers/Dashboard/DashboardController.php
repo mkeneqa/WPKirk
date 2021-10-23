@@ -7,13 +7,10 @@ use WPKirk\PureCSSTabs\PureCSSTabsProvider;
 use WPKirk\PureCSSSwitch\PureCSSSwitchProvider;
 use WPKirk\WPBones\Foundation\Log\Log;
 
-
 class DashboardController extends Controller
 {
-
     public function firstMenu()
     {
-
         Log::debug('Log::debug sample');
         Log::info('Log::info sample');
         Log::notice('Log::notice sample');
@@ -58,7 +55,6 @@ class DashboardController extends Controller
 
     public function package()
     {
-
         PureCSSTabsProvider::enqueueStyles();
 
         PureCSSSwitchProvider::enqueueStyles();
@@ -70,7 +66,6 @@ class DashboardController extends Controller
 
     public function packagePost()
     {
-
         PureCSSTabsProvider::enqueueStyles();
 
         PureCSSSwitchProvider::enqueueStyles();
@@ -83,7 +78,6 @@ class DashboardController extends Controller
     public function saveOptions()
     {
         if ($this->request->verifyNonce('Options')) {
-
             WPKirk()->options->update($this->request->getAsOptions());
 
             return WPKirk()->view('dashboard.optionsview')
@@ -98,16 +92,15 @@ class DashboardController extends Controller
 
     public function customPage()
     {
-        return WPKirk()->view('dashboard.custompage')
+        return WPKirk()->view('dashboard.first_custom_page')
                        ->withAdminStyles('wp-kirk-common')
                        ->with('method', $this->request->method);
     }
 
     public function secondCustomPage()
     {
-        return WPKirk()->view('dashboard.custompage')
+        return WPKirk()->view('dashboard.second_custom_page')
                        ->withAdminStyles('wp-kirk-common')
                        ->with('method', $this->request->method);
     }
-
 }

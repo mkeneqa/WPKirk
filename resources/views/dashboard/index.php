@@ -18,7 +18,7 @@
       <li><a href="#passing-data">Passing data to view</a></li>
       <li><a href="#configuration">Configuration</a></li>
       <li><a href="#plugin-information">Plugin information</a></li>
-      <li><a href="#custom-page">Custom Page</a></li>
+      <li><a href="#custom-pages">Custom Pages</a></li>
     </ul>
   </div>
 
@@ -53,11 +53,13 @@
     <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;TextDomain; <span class="hljs-comment">// <?php echo $plugin->TextDomain ?></span></code></pre>
 
     <hr />
-    <a name="custom-page"></a>
-    <h2>Custom Page</h2>
+    <a name="custom-pages"></a>
+    <h2>Custom Pages</h2>
 
-    <p>To create a custom page without a menu, you may config the <code>route.php</code> file in the <code>config</code>
-      folder of the Plugin</p>
+    <p>To create a custom pages without a menu, you may config the <code>route.php</code> file in the
+      <code>config</code>
+      folder of the Plugin
+    </p>
 
     <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-meta">&lt;?php</span>
 
@@ -95,7 +97,7 @@
     <pre><code class="hljs" style="background:#282C34;border-radius:8px"><span class="hljs-keyword">echo</span> $plugin-&gt;getPageUrl(<span class="hljs-string">'custom_page'</span>) <span class="hljs-comment">// <?php echo $plugin->getPageUrl('custom_page') ?></span></code></pre>
 
     <p><a
-        href="<?php echo $plugin->getPageUrl('custom_page') ?>">Custom
+        href="<?php echo $plugin->getPageUrl('first_custom_page') ?>">Custom
         Page</a></p>
 
   </div>

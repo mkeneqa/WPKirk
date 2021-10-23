@@ -2,15 +2,15 @@
 
 use WPKirk\WPBones\Routing\Pages\Support\Page;
 
-class CustomJohnController extends Page
+class CustomPage extends Page
 {
     public function title()
     {
-        return "Hello, John!";
+        return "Hello, Custom Page!";
     }
     
     public function render()
     {
-        return $this->plugin->view('dashboard.custompage');
+        return $this->plugin->view('dashboard.custom_page');
     }
 }

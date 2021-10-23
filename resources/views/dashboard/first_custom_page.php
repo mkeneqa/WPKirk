@@ -10,9 +10,10 @@
 <div class="wp-kirk wrap">
   <h1>Hello, I'm a Custom Page without menu</h1>
 
-  <h3>Current Method <?php echo ! isset( $method ) ? : strtoupper( $method ) ?></h3>
+  <h3>Current Method <?php echo ! isset($method) ? : strtoupper($method) ?>
+  </h3>
 
-  <hr/>
+  <hr />
 
   <form method="post">
     <button class="button button-hero button-primary">Test Post</button>
@@ -20,9 +21,16 @@
 
   <h3>Second Custom page with only post</h3>
 
-  <form method="post" action="<?php echo $plugin->getPageUrl( 'second_custom_page' ) ?>">
+  <form method="post"
+    action="<?php echo $plugin->getPageUrl('second_custom_page') ?>">
     <button class="button button-hero button-primary">Test Post</button>
   </form>
 
+  <hr />
+
+  <p>You may also use the <code>pages</code> folder to create your own pages.</p>
+  <p>Click <a
+      href="<?php echo $plugin->getPageUrl('custom_page') ?>">here</a>
+    to load the custom page</p>
 
 </div>
