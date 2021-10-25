@@ -11,6 +11,8 @@ class CustomPage extends Page
     
     public function render()
     {
-        return $this->plugin->view('dashboard.custom_page');
+        return $this->plugin
+            ->view('dashboard.custom_page')
+            ->withAdminStyles('wp-kirk-common');
     }
 }
