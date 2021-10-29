@@ -1,24 +1,15 @@
 import { MySample } from "components/sample";
-import React, { Component } from "react";
+import React from "react";
 import ReactDom from "react-dom";
 import style from "./styles.less";
 
-export default class MyApp extends Component {
-	constructor(props) {
-		super(props);
+const App = () => (
+	<div className={style.boxes}>
+		<h1>Application</h1>
+		<h2>I'm ReactJS version {React.version}</h2>
+		<p>Below we're using another component</p>
+		<MySample />
+	</div>
+);
 
-		this.state = {};
-	}
-
-	render() {
-		return (
-			<div className={style.boxes}>
-				<h2>Hello, World!</h2>
-				<h3>I'm ReactJS version {React.version}</h3>
-				<MySample />
-			</div>
-		);
-	}
-}
-
-ReactDom.render(<MyApp />, document.getElementById("app"));
+ReactDom.render(<App />, document.getElementById("app"));
